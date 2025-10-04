@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VibeAI Platform — Your Trusted AI Health Companion</title>
+  <meta name="description" content="VibeAI is a trusted, secure, AI-powered platform delivering culturally sensitive HIV/SRHR information for adolescents and young people—while simplifying insights for policymakers, researchers, and donors."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Babymigo‑inspired soft palette */
+      --ink:#2b2f3b;        /* body text */
+      --muted:#6b7280;      /* muted */
+      --line:#eceff3;       /* borders */
+      --surface:#fafbff;    /* subtle bg */
+      --white:#ffffff;
+      --pink-600:#ff5f8e;   /* primary */
+      --pink-500:#ff7aa8;   /* hover */
+      --pink-100:#ffe6ef;   /* light wash */
+      --lav-50:#f6f2ff;     /* hero panel */
+      --lav-100:#ede7ff;
+      --green-500:#38c172;  /* success */
+      --yellow-500:#ffd35a; /* CTA alt */
+      --shadow:0 10px 24px rgba(16,24,40,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--ink); background:#fff}
+    a{color:var(--pink-600); text-decoration:none}
+    a:hover{text-decoration:underline; color:var(--pink-500)}
+    .wrap{max-width:1200px; margin:0 auto; padding:0 20px}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:100; background:#fff; border-bottom:1px solid var(--line)}
+    .nav{display:grid; grid-template-columns: 1fr 2fr 1fr; align-items:center; gap:16px; min-height:84px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand h1{font-size:20px; margin:0; letter-spacing:.2px}
+    .corner-logo{width:min(170px, 28vw); height:auto; filter: drop-shadow(0 8px 16px rgba(0,0,0,.08));}
+
+    /* Search bar (center) */
+    .search-wide{display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px; background:#fff; border:1px solid var(--line)}
+    .search-wide input{flex:1; border:0; outline:none; font:inherit; color:var(--ink)}
+    .search-btn{border:0; padding:10px 14px; border-radius:999px; background:var(--pink-600); color:#fff; font-weight:700; cursor:pointer}
+    .search-btn:hover{background:var(--pink-500)}
+
+    nav ul{list-style:none; margin:0; padding:0; display:flex; justify-content:flex-end; gap:10px}
+    nav a{font-weight:700; color:#3d4a5a; padding:10px 12px; border-radius:12px}
+    nav a:hover{background:#f7f7fb}
+    .btn-ghost{padding:8px 12px; border-radius:10px; border:1px solid var(--line); color:#3d4a5a; font-weight:700}
+    .btn-primary{padding:8px 14px; border-radius:10px; background:var(--pink-600); color:#fff; font-weight:800; border:1px solid var(--pink-600)}
+    .btn-primary:hover{background:var(--pink-500)}
+
+    /* Banner */
+    .banner{background:var(--lav-50); border-top:1px solid var(--lav-100);}
+    .banner .inner{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:26px 0}
+    .banner h2{font-size: clamp(26px, 4vw, 38px); margin:0; color:#2e2a44}
+    .crumbs{font-size:14px; color:#6a6a80; margin-bottom:6px}
+
+    /* Left rail layout */
+    main{display:grid; grid-template-columns: 250px 1fr; gap:28px}
+    .rail{position:sticky; top:120px; align-self:start}
+    .rail .title{font-weight:800; text-transform:uppercase; font-size:12px; letter-spacing:.12em; color:#8b8fb0}
+    .rail ul{list-style:none; margin:12px 0 0; padding:0; display:grid; gap:6px}
+    .rail a{display:block; padding:10px 12px; border-radius:12px; background:#fff; color:var(--ink); border:1px solid var(--line)}
+    .rail a:hover{background:#faf5ff}
+
+    /* Sections */
+    section{padding:54px 0}
+    .hero{padding:28px 0 12px}
+    .eyebrow{display:inline-block; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#7b6daa; background:#efeaff; border:1px solid var(--lav-100); padding:6px 10px; border-radius:999px}
+    .h1{font-size: clamp(32px, 4vw, 54px); line-height:1.08; margin:14px 0}
+    .lead{font-size: clamp(16px, 1.3vw, 20px); color:#4a4f63}
+
+    /* Metric cards */
+    .stats{margin-top:22px; display:grid; gap:16px; grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );}
+    .metric{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .metric .num{font-size:26px; font-weight:900; color:#2f2a55}
+    .metric .desc{margin-top:6px; color:#4e5670}
+    .source{margin-top:8px; font-size:12px; color:#8b92a6}
+
+    /* Video */
+    .video-wrap{margin-top:24px; border-radius:18px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow)}
+    .video-wrap iframe{width:100%; height:360px; display:block}
+
+    /* Cards */
+    .two-col{display:grid; grid-template-columns: 1fr 1fr; gap:26px}
+    .kicker{font-weight:800; color:#6f5aa9; margin:0 0 8px}
+    .cards-3{display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));}
+    .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px}
+    .mini{font-size:13px; color:#6b7794}
+
+    /* Buttons */
+    .btn{display:inline-flex; align-items:center; gap:10px; border-radius:12px; padding:12px 16px; font-weight:800; border:1px solid var(--line);
+         background:#fff; color:var(--pink-600); box-shadow: 0 8px 16px rgba(2,14,26,.06)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.success{background:var(--green-500); color:#fff; border-color:var(--green-500)}
+    .btn.alt{background:var(--yellow-500); color:#2d2a24; border-color:#f1c232}
+
+    /* Contact form */
+    .form{display:grid; gap:14px}
+    .input, textarea{width:100%; padding:14px 14px; border-radius:12px; background:#fff; border:1px solid var(--line); color:var(--ink); font:inherit}
+    textarea{min-height:120px; resize:vertical}
+    .input:focus, textarea:focus{outline:2px solid #f9a5bf; box-shadow:0 0 0 6px rgba(255,95,142,.15)}
+
+    /* Footer */
+    footer{padding:28px 0 60px; color:#667389; border-top:1px solid var(--line)}
+
+    /* Responsive */
+    @media (max-width: 1040px){ .nav{grid-template-columns: 1fr 1.6fr 1fr} }
+    @media (max-width: 900px){ .nav{grid-template-columns: 1fr; gap:10px} nav ul{justify-content:flex-start} .corner-logo{width:min(150px,36vw)} }
+    @media (max-width: 980px){ main{grid-template-columns: 1fr} .rail{display:none} }
+  </style>
+</head>
+<body>
+  <a href="#home" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <img class="corner-logo" src="sandbox:/mnt/data/vibe-ai-logo.png" alt="VibeAI logo" />
+        <h1>VibeAI Platform</h1>
+      </div>
+
+      <!-- Center search -->
+      <form class="search-wide" role="search" aria-label="Site search" onsubmit="event.preventDefault()">
+        <input type="search" placeholder="Search for answers, articles, groups" aria-label="Search" />
+        <button class="search-btn" type="submit">Search</button>
+      </form>
+
+      <!-- Right actions -->
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#best-practices">Best Practices</a></li>
+          <li><a class="btn-ghost" href="#contact">Log in</a></li>
+          <li><a class="btn-primary" href="#contact">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page banner -->
+  <div class="banner">
+    <div class="wrap inner">
+      <div>
+        <div class="crumbs">Home › VibeAI Platform</div>
+        <h2>Nigeria’s youth‑centered SRHR/HIV community</h2>
+      </div>
+      <a class="btn alt" href="#community">Join now</a>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:8px">
+    <main>
+      <!-- Left rail -->
+      <aside class="rail" aria-label="On this page">
+        <div class="title">On this page</div>
+        <ul>
+          <li><a href="#home">Welcome</a></li>
+          <li><a href="#about">About VibeAI</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#best-practices">Best Practices</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </aside>
+
+      <div>
+        <!-- Home / Hero -->
+        <section id="home" class="hero">
+          <span class="eyebrow">Welcome to</span>
+          <div class="h1">VibeAI — Your Trusted AI Health Companion!!!</div>
+          <p class="lead">A secure, culturally aware AI platform supporting adolescents and young people with accurate HIV/SRHR information — while turning data into insights for policymakers, researchers and donors.</p>
+
+          <!-- Metrics -->
+          <div class="stats">
+            <div class="metric">
+              <div class="num">630,000 deaths (2024)</div>
+              <div class="desc">HIV-related deaths globally in 2024 — with children and adolescents accounting for a significant share.</div>
+              <div class="source">Source: WHO, 2024</div>
+            </div>
+            <div class="metric">
+              <div class="num">370,000 new infections</div>
+              <div class="desc">Among Nigerians aged 15–24 in 2024; of these, 145,000 were adolescents 15–19.</div>
+              <div class="source">Source: UNICEF, 2024</div>
+            </div>
+            <div class="metric">
+              <div class="num">Highest burden in WCA</div>
+              <div class="desc">Nigeria bears the highest HIV burden in West & Central Africa, with gaps in pediatric care & treatment cascading into delayed epidemic control.</div>
+              <div class="source">Synthesis of national/UN sources</div>
+            </div>
+            <div class="metric">
+              <div class="num">Critical information gap</div>
+              <div class="desc">Adolescents lack structured, culturally sensitive SRHR/HIV/life‑skills content across tech platforms — a gap VibeAI is built to close.</div>
+              <div class="source">Programmatic insight</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap">
+            <a class="btn" href="#about">Learn about VibeAI</a>
+            <a class="btn success" href="#community">Join the community</a>
+          </div>
+
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/EqlyEYOI754" title="VibeAI Overview Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <p class="mini">Watch: a short explainer on the power of youth‑centered, AI‑enabled health information.</p>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+          <div class="two-col">
+            <div>
+              <p class="kicker">About</p>
+              <h2 style="margin-top:6px; font-size:30px">What is VibeAI?</h2>
+              <p>VibeAI is founded by <strong>Gbadegesin Alawode</strong>. It is a <strong>trusted, secured and AI‑powered online platform</strong> that delivers accurate and culturally sensitive HIV/SRHR information to adolescents and young people. VibeAI also helps <strong>simplify and aggregate data insights</strong> and relevant publications for <strong>policymakers, researchers and donors</strong>.</p>
+              <div class="stats" style="margin-top:14px">
+                <div class="card"><strong>Secure by design</strong><br><span class="mini">Privacy‑minded architecture and responsible AI guardrails.</span></div>
+                <div class="card"><strong>Human + AI</strong><br><span class="mini">Curated content reviewed by experts, delivered with scalable AI.</span></div>
+                <div class="card"><strong>Context‑aware</strong><br><span class="mini">Culturally sensitive responses routed to local services where available.</span></div>
+              </div>
+            </div>
+            <div>
+              <p class="kicker">How it helps</p>
+              <div class="cards-3">
+                <div class="card"><h3>Youth‑friendly answers</h3><p>On‑demand, judgment‑free guidance on SRHR/HIV prevention, testing, treatment adherence and life‑skills.</p></div>
+                <div class="card"><h3>Data to decisions</h3><p>Dashboards and briefs that translate fragmented data into actionable insights for policy and programs.</p></div>
+                <div class="card"><h3>Care linkages</h3><p>Smart prompts that connect users to nearby services and community support where available.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Community -->
+        <section id="community">
+          <p class="kicker">Community</p>
+          <h2 style="margin-top:6px; font-size:30px">A safe, supportive space</h2>
+          <div class="cards-3" style="margin-top:12px">
+            <div class="card"><h3>Peer learning</h3><p>Moderated discussions, AMA sessions with clinicians, and youth advocates.</p></div>
+            <div class="card"><h3>Challenges & badges</h3><p>Micro‑courses on life skills, adherence, stigma reduction, and digital safety.</p></div>
+            <div class="card"><h3>Partner hubs</h3><p>Spaces for implementing partners and mentors to co‑create resources.</p></div>
+          </div>
+          <div style="margin-top:18px"><a class="btn" href="#contact">Express interest</a></div>
+        </section>
+
+        <!-- Portfolio (placeholders) -->
+        <section id="portfolio">
+          <p class="kicker">Portfolio</p>
+          <h2 style="margin-top:6px; font-size:30px">Pilots, prototypes & case studies</h2>
+          <div class="cards-3" style="margin-top:12px">
+            <div class="card"><h3>Bot prototype</h3><p>Multilingual Q&A flows with safety rails. <span class="mini">(link coming soon)</span></p></div>
+            <div class="card"><h3>Adherence nudges</h3><p>Behavioral prompts for appointment keeping. <span class="mini">(link coming soon)</span></p></div>
+            <div class="card"><h3>Insight briefs</h3><p>Data syntheses for decision makers. <span class="mini">(link coming soon)</span></p></div>
+            <div class="card"><h3>Service locator</h3><p>Facility & hotline routing. <span class="mini">(link coming soon)</span></p></div>
+            <div class="card"><h3>Youth safety</h3><p>Safeguarding and escalation playbooks. <span class="mini">(link coming soon)</span></p></div>
+            <div class="card"><h3>Content studio</h3><p>SRHR/HIV micro‑content kits. <span class="mini">(link coming soon)</span></p></div>
+          </div>
+        </section>
+
+        <!-- Publications (placeholders) -->
+        <section id="publications">
+          <p class="kicker">Publications</p>
+          <h2 style="margin-top:6px; font-size:30px">Research & knowledge products</h2>
+          <ul>
+            <li>OTZ adolescent outcomes — ICHSSA‑2 Lagos (<em>add link</em>)</li>
+            <li>THRIVE program briefs & learning notes (<em>add link</em>)</li>
+            <li>SRHR/HIV youth engagement toolkit (<em>add link</em>)</li>
+          </ul>
+        </section>
+
+        <!-- Best Practices -->
+        <section id="best-practices">
+          <div class="two-col">
+            <div>
+              <p class="kicker">Best Practices</p>
+              <h2 style="margin-top:6px; font-size:30px">From strategy to scalable action</h2>
+              <div class="cards-3" style="margin-top:12px">
+                <div class="card"><h3>Youth co‑design</h3><p>Co‑create content & flows with adolescents to ensure relevance and dignity.</p></div>
+                <div class="card"><h3>Safety by default</h3><p>Age‑appropriate responses; crisis keywords trigger escalation & human review.</p></div>
+                <div class="card"><h3>Data minimalism</h3><p>Collect only what’s necessary; transparent consent and retention policies.</p></div>
+                <div class="card"><h3>Facility linkages</h3><p>Bi‑directional referral loops between community and health facilities.</p></div>
+                <div class="card"><h3>Evidence first</h3><p>Rapid learning cycles; outcomes tracked with clear indicators.</p></div>
+                <div class="card"><h3>Localization</h3><p>Language and cultural nuance prioritized for inclusivity.</p></div>
+              </div>
+            </div>
+            <div>
+              <div class="card">
+                <h3>Implementation checklist</h3>
+                <ul>
+                  <li>Define safeguarding & escalation pathways</li>
+                  <li>Map services & youth‑friendly facilities</li>
+                  <li>Design content taxonomy & quality review cadence</li>
+                  <li>Set up analytics with privacy guards</li>
+                  <li>Plan iterative pilots with clear success criteria</li>
+                </ul>
+              </div>
+              <div class="card" style="margin-top:12px">
+                <h3>Governance & trust</h3>
+                <p>Adopt transparent model cards, publish updates and invite independent audits where appropriate.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+          <div class="two-col">
+            <div>
+              <p class="kicker">Contact Us</p>
+              <h2 style="margin-top:6px; font-size:30px">Let’s build with impact</h2>
+              <p>Share a short note about how you’d like to collaborate. <strong>No email is displayed here</strong> as requested; connect via this form and we’ll get back to you through your preferred channel once integrations are set.</p>
+              <form class="form" onsubmit="event.preventDefault(); alert('Thanks! This demo form is static. Hook this up to your backend or a form service.');">
+                <input class="input" type="text" name="name" placeholder="Your name" required>
+                <input class="input" type="text" name="preferred" placeholder="Preferred contact handle (e.g., WhatsApp, X/LinkedIn)" required>
+                <textarea name="message" class="input" placeholder="How can we help?" required></textarea>
+                <button class="btn btn-primary" type="submit" style="border-color:var(--pink-600); background:var(--pink-600); color:#fff">Send message</button>
+              </form>
+            </div>
+            <div>
+              <div class="card">
+                <h3>Quick links</h3>
+                <ul>
+                  <li><a href="#portfolio">See pilots & case studies</a></li>
+                  <li><a href="#publications">Browse publications</a></li>
+                  <li><a href="#best-practices">Implement best practices</a></li>
+                </ul>
+              </div>
+              <div class="card" style="margin-top:12px">
+                <h3>Office hours</h3>
+                <p class="mini">Community Q&A sessions run monthly. Join via the Community section.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap">
+      <div>© <span id="year"></span> VibeAI. All rights reserved.</div>
+      <div style="display:flex;gap:8px;align-items:center"><span class="btn" style="padding:8px 12px">Accessibility</span><span class="btn" style="padding:8px 12px">Privacy</span><span class="btn" style="padding:8px 12px">Terms</span></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
